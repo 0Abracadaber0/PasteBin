@@ -2,7 +2,7 @@ package router
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"hashgenerator/handler"
+	"main/handler"
 )
 
 func SetUpRoutes(app *fiber.App) {

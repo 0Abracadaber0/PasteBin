@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"hashgenerator/router"
 	"log"
+	"main/router"
 )
 
 func main() {
