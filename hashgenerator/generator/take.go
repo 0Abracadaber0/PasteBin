@@ -26,7 +26,7 @@ func TakeNumber() string {
 
 	num, err := rdb.LPop(ctx, "hashes").Int()
 	if err != nil {
-		panic(err)
+		return "oops... error"
 	}
 
 	hash := convertNumber(num)

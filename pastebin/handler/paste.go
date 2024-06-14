@@ -7,7 +7,7 @@ import (
 )
 
 func PasteHandler(c *fiber.Ctx) error {
-	url := "http://localhost:8081/api/calc_hash"
+	url := "http://hashgenerator:8081/api/calc_hash"
 
 	a := fiber.AcquireAgent()
 	req := a.Request()

@@ -1,0 +1,20 @@
+version: '3'
+services:
+  hashgenerator:
+    build:
+      context: ./hashgenerator
+      dockerfile: Dockerfile
+    env_file:
+      - ./hashgenerator/redis.env
+    ports:
+      - 8081:8081
+  pastebin:
+    build:
+      context: ./pastebin
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+#  redis:
+#    image: "redis:alpine"
+#    volumes:
+#      - /var/lib/redis/dump.rdb:/data/dump.rdb

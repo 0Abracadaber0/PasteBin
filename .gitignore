@@ -2,4 +2,4 @@
 
 pastebin/.env
 
-hashgenerator/.env
+hashgenerator/redis.env
