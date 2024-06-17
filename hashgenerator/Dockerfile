@@ -15,8 +15,6 @@ FROM alpine
 
 WORKDIR /app
 
-COPY ./redis.env ./redis.env
-
 COPY --from=builder /builder/cmd/main ./cmd/main
 
 EXPOSE 8081
