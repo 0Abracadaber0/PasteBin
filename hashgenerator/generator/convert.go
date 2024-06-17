@@ -2,7 +2,7 @@ package generator
 
 import "strconv"
 
-func convertNumber(num int) (newNum string) {
+func ConvertNumber(num int) (newNum string) {
 	for num != 0 {
 		symbInt := num % 62
 		var symbStr string
