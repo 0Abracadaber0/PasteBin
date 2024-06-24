@@ -10,7 +10,7 @@ func SetUpRoutes(app *fiber.App) {
 	app.Post("/paste", handler.PasteHandler)
 
 	text := app.Group("/text")
-	text.Get("/:text_hash", handler.TextHandler)
+	text.Get("/:text_hash", handler.LinkHandler)
 
 	app.Use(handler.NotFoundHandler)
 }

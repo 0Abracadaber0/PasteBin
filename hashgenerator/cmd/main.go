@@ -11,5 +11,5 @@ func main() {
 
 	router.SetUpRoutes(app)
 
-	log.Fatal(app.Listen(":8081"))
+	log.Fatal(app.Listen("0.0.0.0:8081"))
 }
