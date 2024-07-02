@@ -2,12 +2,18 @@ package handler
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/gofiber/fiber/v2"
 	"log"
 )
 
 func PasteHandler(c *fiber.Ctx) error {
 	url := "http://hashgenerator:8081/api/calc_hash"
+
+	text := c.FormValue("text")
+	expire := c.FormValue("expire")
+
+	fmt.Println(text + " " + expire)
 
 	a := fiber.AcquireAgent()
 	req := a.Request()
