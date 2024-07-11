@@ -19,7 +19,7 @@ func ConnectDB() {
 	}
 
 	dsn := fmt.Sprintf(
-		"host=db port=%d user=%s password=%s dbname=%s sslmode=disable",
+		"host=postgres port=%d user=%s password=%s dbname=%s sslmode=disable",
 		port,
 		config.Config("POSTGRES_USER"),
 		config.Config("POSTGRES_PASSWORD"),

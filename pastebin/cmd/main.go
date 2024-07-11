@@ -3,13 +3,14 @@ package main
 import (
 	"github.com/gofiber/fiber/v2"
 	"log"
+	"main/database"
 	"main/router"
 )
 
 func main() {
 	app := fiber.New()
 
-	//database.ConnectDB()
+	database.ConnectDB()
 
 	router.SetUpRoutes(app)
 
