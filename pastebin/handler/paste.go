@@ -2,8 +2,12 @@ package handler
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/gofiber/fiber/v2"
 	"log"
+	"main/database"
+	"main/internal/converter"
+	"main/model"
 )
 
 func PasteHandler(c *fiber.Ctx) error {
@@ -30,11 +34,19 @@ func PasteHandler(c *fiber.Ctx) error {
 	}
 
 	text := c.FormValue("text")
-	//expire := c.FormValue("expire")
+	expire := c.FormValue("expire")
+	fmt.Println("look: " + expire)
+
+	expire, err = converter.FormatingTime(expire)
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	hashString := hash["hash"].(string)
 
 	UploadText(hashString, text)
+
+	database.DB.Create(&model.Text{TextHash: hashString, TextExpire: expire})
 
 	return c.Render("templates/paste.html", hash)
 }
