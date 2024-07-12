@@ -15,14 +15,16 @@ services:
     volumes:
       - /var/lib/redis:/data
   hashgenerator:
+    depends_on:
+      - redis
     build:
       context: ./hashgenerator
       dockerfile: Dockerfile
     ports:
       - "8081:8081"
-    depends_on:
-      - redis
   pastebin:
+    depends_on:
+      - postgres
     env_file:
       - pastebin/.env
     build:
