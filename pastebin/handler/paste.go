@@ -35,7 +35,6 @@ func PasteHandler(c *fiber.Ctx) error {
 
 	text := c.FormValue("text")
 	expire := c.FormValue("expire")
-	fmt.Println("look: " + expire)
 
 	expire, err = converter.FormatingTime(expire)
 	if err != nil {
@@ -46,7 +45,7 @@ func PasteHandler(c *fiber.Ctx) error {
 
 	UploadText(hashString, text)
 
-	database.DB.Create(&model.Text{TextHash: hashString, TextExpire: expire})
+	database.DB.Create(&model.Text{TextHash: hashString, FileName: hashString + ".txt", ExpireAt: expire})
 
 	return c.Render("templates/paste.html", hash)
 }
