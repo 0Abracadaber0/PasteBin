@@ -46,10 +46,8 @@ func GetText(key string) string {
 	}); err != nil {
 		fmt.Printf("Unable to get object %q from bucket %q, %v\n", key, bucket, err)
 	} else {
-		fmt.Println("Im there3")
 		data, err := io.ReadAll(result.Body)
 		if err != nil {
-			fmt.Println("Im there4")
 			fmt.Printf("Error reading data: %v\n", err)
 		}
 		return string(data)
