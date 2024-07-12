@@ -5,6 +5,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
+	"io"
 	"strings"
 )
 
@@ -32,4 +33,27 @@ func UploadText(hash string, body string) {
 		fmt.Printf("File %q uploaded to bucket %q\n", body, bucket)
 	}
 
+}
+
+func GetText(key string) string {
+	sess, _ := session.NewSession()
+
+	svc := s3.New(sess, aws.NewConfig().WithEndpoint(vkCloudHotboxEndpoint).WithRegion(defaultRegion))
+	bucket := "pastebin-by-abracadaber"
+	if result, err := svc.GetObject(&s3.GetObjectInput{
+		Bucket: aws.String(bucket),
+		Key:    aws.String(key),
+	}); err != nil {
+		fmt.Printf("Unable to get object %q from bucket %q, %v\n", key, bucket, err)
+	} else {
+		fmt.Println("Im there3")
+		data, err := io.ReadAll(result.Body)
+		if err != nil {
+			fmt.Println("Im there4")
+			fmt.Printf("Error reading data: %v\n", err)
+		}
+		return string(data)
+	}
+
+	return ""
 }

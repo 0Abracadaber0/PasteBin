@@ -1,23 +1,19 @@
 package handler
 
 import (
-	"fmt"
 	"github.com/gofiber/fiber/v2"
 	"main/database"
 	"main/model"
 )
 
 func LinkHandler(c *fiber.Ctx) error {
-	hash := c.Params("hash")
-	result := database.DB.First(&model.Text{TextHash: hash})
-	var textContent string
-	if result.RowsAffected == 1 {
-		result.Scan(&textContent)
-	} else {
-		// Обработайте случай, когда запись не найдена
-	}
-	fmt.Println(textContent)
+	hash := c.Params("text_hash")
+	var textRow model.Text
+	database.DB.Model(&model.Text{}).Where("text_hash = ?", hash).First(&textRow)
+
+	text := GetText(textRow.FileName)
+
 	return c.Render("templates/link.html", fiber.Map{
-		"hash": c.Params("text_hash"),
+		"text": text,
 	})
 }
