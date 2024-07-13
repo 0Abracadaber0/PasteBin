@@ -2,7 +2,6 @@ package handler
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/gofiber/fiber/v2"
 	"log"
 	"main/database"
@@ -36,13 +35,9 @@ func PasteHandler(c *fiber.Ctx) error {
 	text := c.FormValue("text")
 	expire := c.FormValue("expire")
 
-	expire, err = converter.FormatingTime(expire)
-	if err != nil {
-		fmt.Println(err)
-	}
+	expire = converter.FormatingTime(expire)
 
 	hashString := hash["hash"].(string)
-
 	UploadText(hashString, text)
 
 	database.DB.Create(&model.Text{TextHash: hashString, FileName: hashString + ".txt", ExpireAt: expire})
