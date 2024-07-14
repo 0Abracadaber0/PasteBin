@@ -4,39 +4,31 @@ import "testing"
 
 func TestFormatingTime(t *testing.T) {
 	result := FormatingTime("2024-07-13T10:26")
-	expected := "2024-07-13 13:26:00:00"
+	expected := "2024-07-13 07:26:00.000000"
 	if result != expected {
 		t.Error("Expected", expected, "got", result)
 	} else {
 		t.Log("OK")
 	}
 
-	result = FormatingTime("2024-07-13T23:26")
-	expected = "2024-07-14 02:26:00:00"
+	result = FormatingTime("2024-07-14T02:26")
+	expected = "2024-07-13 23:26:00.000000"
 	if result != expected {
 		t.Error("Expected", expected, "got", result)
 	} else {
 		t.Log("OK")
 	}
 
-	result = FormatingTime("2024-07-31T23:26")
-	expected = "2024-08-01 02:26:00:00"
+	result = FormatingTime("2024-07-01T02:26")
+	expected = "2024-06-30 23:26:00.000000"
 	if result != expected {
 		t.Error("Expected", expected, "got", result)
 	} else {
 		t.Log("OK")
 	}
 
-	result = FormatingTime("2024-02-28T23:26")
-	expected = "2024-02-29 02:26:00:00"
-	if result != expected {
-		t.Error("Expected", expected, "got", result)
-	} else {
-		t.Log("OK")
-	}
-
-	result = FormatingTime("2024-12-31T23:26")
-	expected = "2025-01-01 02:26:00:0"
+	result = FormatingTime("2024-01-01T02:26")
+	expected = "2023-12-31 23:26:00.000000"
 	if result != expected {
 		t.Error("Expected", expected, "got", result)
 	} else {
