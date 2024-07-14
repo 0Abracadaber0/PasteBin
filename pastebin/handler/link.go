@@ -17,6 +17,9 @@ func LinkHandler(c *fiber.Ctx) error {
 	hash := c.Params("text_hash")
 	var textRow model.Text
 	database.DB.Model(&model.Text{}).Where("text_hash = ?", hash).First(&textRow)
+	if textRow.FileName == "" {
+		return c.SendFile("templates/404.html")
+	}
 
 	text := GetText(textRow.FileName)
 
